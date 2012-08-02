@@ -16,8 +16,8 @@
  * @category   Zend
  * @package    Zend_Http
  * @subpackage Client
- * @version    $Id: Client.php 23864 2011-04-19 16:14:07Z shahar $
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version    $Id: Client.php 23443 2010-11-24 11:53:13Z shahar $
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -60,7 +60,7 @@ require_once 'Zend/Http/Response/Stream.php';
  * @package    Zend_Http
  * @subpackage Client
  * @throws     Zend_Http_Client_Exception
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Http_Client
@@ -911,10 +911,10 @@ class Zend_Http_Client
                 require_once 'Zend/Http/Client/Exception.php';
                 throw new Zend_Http_Client_Exception("Could not open temp file {$this->_stream_name}");
         }
-
+        
         return $fp;
     }
-
+    
     /**
      * Send the HTTP request and return an HTTP response object
      *
@@ -1019,10 +1019,6 @@ class Zend_Http_Client
             // If we got redirected, look for the Location header
             if ($response->isRedirect() && ($location = $response->getHeader('location'))) {
 
-                // Avoid problems with buggy servers that add whitespace at the
-                // end of some headers (See ZF-11283)
-                $location = trim($location);
-                
                 // Check whether we send the exact same request again, or drop the parameters
                 // and send a GET request
                 if ($response->getStatus() == 303 ||
@@ -1034,7 +1030,7 @@ class Zend_Http_Client
                 }
 
                 // If we got a well formed absolute URI
-                if (($scheme = substr($location, 0, 6)) && ($scheme == 'http:/' || $scheme == 'https:')) {
+                if (Zend_Uri_Http::check($location)) {
                     $this->setHeaders('host', null);
                     $this->setUri($location);
 
