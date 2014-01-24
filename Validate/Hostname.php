@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Hostname.php 25061 2012-11-02 21:24:09Z rob $
+ * @version    $Id$
  */
 
 /**
@@ -41,7 +41,7 @@ require_once 'Zend/Validate/Ip.php';
  *
  * @category   Zend
  * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Hostname extends Zend_Validate_Abstract
@@ -151,6 +151,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * (.BIZ) International http://www.iana.org/domains/idn-tables/
      * (.BR) Brazil http://registro.br/faq/faq6.html
      * (.BV) Bouvett Island http://www.norid.no/domeneregistrering/idn/idn_nyetegn.en.html
+     * (.CA) Canada http://www.iana.org/domains/idn-tables/tables/ca_fr_1.0.html
      * (.CAT) Catalan http://www.iana.org/domains/idn-tables/tables/cat_ca_1.0.html
      * (.CH) Switzerland https://nic.switch.ch/reg/ocView.action?res=EF6GW2JBPVTG67DLNIQXU234MN6SC33JNQQGI7L6#anhang1
      * (.CL) Chile http://www.iana.org/domains/idn-tables/tables/cl_latn_1.0.html
@@ -179,6 +180,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * (.PR) Puerto Rico http://www.nic.pr/idn_rules.asp
      * (.PT) Portugal https://online.dns.pt/dns_2008/do?com=DS;8216320233;111;+PAGE(4000058)+K-CAT-CODIGO(C.125)+RCNT(100);
      * (.RU) Russia http://www.iana.org/domains/idn-tables/tables/ru_ru-ru_1.0.html
+     * (.RS) Serbia http://www.iana.org/domains/idn-tables/tables/rs_sr-rs_1.0.pdf
      * (.SA) Saudi Arabia http://www.iana.org/domains/idn-tables/tables/sa_ar_1.0.html
      * (.SE) Sweden http://www.iis.se/english/IDN_campaignsite.shtml?lang=en
      * (.SH) Saint Helena http://www.nic.sh/SH-IDN-Policy.pdf
@@ -186,6 +188,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * (.TH) Thailand http://www.iana.org/domains/idn-tables/tables/th_th-th_1.0.html
      * (.TM) Turkmenistan http://www.nic.tm/TM-IDN-Policy.pdf
      * (.TR) Turkey https://www.nic.tr/index.php
+     * (.UA) Ukraine http://www.iana.org/domains/idn-tables/tables/ua_cyrl_1.2.html
      * (.VE) Venice http://www.iana.org/domains/idn-tables/tables/ve_es_1.0.html
      * (.VN) Vietnam http://www.vnnic.vn/english/5-6-300-2-2-04-20071115.htm#1.%20Introduction
      *
@@ -199,6 +202,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         'BIZ' => 'Hostname/Biz.php',
         'BR'  => array(1 => '/^[\x{002d}0-9a-zà-ãçéíó-õúü]{1,63}$/iu'),
         'BV'  => array(1 => '/^[\x{002d}0-9a-zàáä-éêñ-ôöøüčđńŋšŧž]{1,63}$/iu'),
+        'CA'  => array(1 => '/^[\x{002d}0-9a-zàâæçéèêëîïôœùûüÿ\x{00E0}\x{00E2}\x{00E7}\x{00E8}\x{00E9}\x{00EA}\x{00EB}\x{00EE}\x{00EF}\x{00F4}\x{00F9}\x{00FB}\x{00FC}\x{00E6}\x{0153}\x{00FF}]{1,63}$/iu'),
         'CAT' => array(1 => '/^[\x{002d}0-9a-z·àç-éíïòóúü]{1,63}$/iu'),
         'CH'  => array(1 => '/^[\x{002d}0-9a-zà-öø-ÿœ]{1,63}$/iu'),
         'CL'  => array(1 => '/^[\x{002d}0-9a-záéíñóúü]{1,63}$/iu'),
@@ -279,6 +283,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
             33=> '/^[\x{002d}0-9א-ת]{1,63}$/iu'),
         'PR'  => array(1 => '/^[\x{002d}0-9a-záéíóúñäëïüöâêîôûàèùæçœãõ]{1,63}$/iu'),
         'PT'  => array(1 => '/^[\x{002d}0-9a-záàâãçéêíóôõú]{1,63}$/iu'),
+        'RS'  => array(1 => '/^[\x{002D}\x{0030}-\x{0039}\x{0061}-\x{007A}\x{0107}\x{010D}\x{0111}\x{0161}\x{017E}]{1,63}$/iu)'),
         'RU'  => array(1 => '/^[\x{002d}0-9а-яё]{1,63}$/iu'),
         'SA'  => array(1 => '/^[\x{002d}.0-9\x{0621}-\x{063A}\x{0641}-\x{064A}\x{0660}-\x{0669}]{1,63}$/iu'),
         'SE'  => array(1 => '/^[\x{002d}0-9a-zäåéöü]{1,63}$/iu'),
@@ -292,6 +297,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         'TM'  => array(1 => '/^[\x{002d}0-9a-zà-öø-ÿāăąćĉċčďđēėęěĝġģĥħīįĵķĺļľŀłńņňŋőœŕŗřśŝşšţťŧūŭůűųŵŷźżž]{1,63}$/iu'),
         'TW'  => 'Zend/Validate/Hostname/Cn.php',
         'TR'  => array(1 => '/^[\x{002d}0-9a-zğıüşöç]{1,63}$/iu'),
+        'UA'  => array(1 => '/^[\x{002d}0-9a-zабвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџґӂʼ]{1,63}$/iu'),
         'VE'  => array(1 => '/^[\x{002d}0-9a-záéíóúüñ]{1,63}$/iu'),
         'VN'  => array(1 => '/^[ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯư\x{1EA0}-\x{1EF9}]{1,63}$/iu'),
         'ایران' => array(1 => '/^[\x{0621}-\x{0624}\x{0626}-\x{063A}\x{0641}\x{0642}\x{0644}-\x{0648}\x{067E}\x{0686}\x{0698}\x{06A9}\x{06AF}\x{06CC}\x{06F0}-\x{06F9}]{1,30}$/iu'),
@@ -517,14 +523,14 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         }
 
         // RFC3986 3.2.2 states:
-        // 
+        //
         //     The rightmost domain label of a fully qualified domain name
-        //     in DNS may be followed by a single "." and should be if it is 
+        //     in DNS may be followed by a single "." and should be if it is
         //     necessary to distinguish between the complete domain name and
         //     some local domain.
-        //     
+        //
         // (see ZF-6363)
-        
+
         // Local hostnames are allowed to be partitial (ending '.')
         if ($this->_options['allow'] & self::ALLOW_LOCAL) {
             if (substr($value, -1) === '.') {

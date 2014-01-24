@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FormSelect.php 25053 2012-10-16 15:30:11Z matthew $
+ * @version    $Id$
  */
 
 
@@ -33,7 +33,7 @@ require_once 'Zend/View/Helper/FormElement.php';
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
@@ -177,8 +177,7 @@ class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
 
 
         $opt = '<option'
-             . ' value="' . $this->view->escape($value) . '"'
-             . ' label="' . $this->view->escape($label) . '"';
+             . ' value="' . $this->view->escape($value) . '"';
 
              if ($class) {
              $opt .= ' class="' . $class . '"';

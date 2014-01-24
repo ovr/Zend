@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Reader.php 25103 2012-11-07 20:29:29Z rob $
+ * @version    $Id$
  */
 
 /**
@@ -42,7 +42,7 @@ require_once 'Zend/Feed/Reader/FeedSet.php';
 /**
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader
@@ -443,7 +443,9 @@ class Zend_Feed_Reader
      * Detect the feed type of the provided feed
      *
      * @param  Zend_Feed_Abstract|DOMDocument|string $feed
+     * @param  bool                                  $specOnly
      * @return string
+     * @throws Zend_Feed_Exception
      */
     public static function detectType($feed, $specOnly = false)
     {

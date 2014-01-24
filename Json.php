@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Json.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id$
  */
 
 /**
@@ -33,7 +33,7 @@ require_once 'Zend/Json/Expr.php';
  * @category   Zend
  * @package    Zend_Json
  * @uses       Zend_Json_Expr
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json
@@ -77,7 +77,9 @@ class Zend_Json
 
             // php < 5.3
             if (!function_exists('json_last_error')) {
-                if ($decode === $encodedValue) {
+                if (strtolower($encodedValue) === 'null') {
+                    return null;
+                } elseif ($decode === null) {
                     require_once 'Zend/Json/Exception.php';
                     throw new Zend_Json_Exception('Decoding failed');
                 }

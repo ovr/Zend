@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Pdf
  * @subpackage FileParser
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: OpenType.php 25137 2012-11-16 17:07:52Z rob $
+ * @version    $Id$
  */
 
 /** Zend_Pdf_FileParser_Font */
@@ -45,7 +45,7 @@ require_once 'Zend/Pdf/FileParser/Font.php';
  *
  * @package    Zend_Pdf
  * @subpackage FileParser
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Pdf_FileParser_Font_OpenType extends Zend_Pdf_FileParser_Font
@@ -584,7 +584,7 @@ abstract class Zend_Pdf_FileParser_Font_OpenType extends Zend_Pdf_FileParser_Fon
             $this->isEmbeddable = false;
         } elseif ($this->isBitSet(2, $embeddingFlags)
                 || $this->isBitSet(3, $embeddingFlags)
-                || $this->isBitSet(4)
+                || $this->isBitSet(4, $embeddingFlags)
             ) {
                 /* One of:
                  *     Restricted License embedding (0x0002)

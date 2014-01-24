@@ -14,7 +14,7 @@
  *
  * @category   Zend
  * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -36,9 +36,9 @@ require_once 'Zend/Validate/Abstract.php';
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Element.php 25075 2012-11-06 19:44:47Z rob $
+ * @version    $Id$
  */
 class Zend_Form_Element implements Zend_Validate_Interface
 {
@@ -225,6 +225,13 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * @var bool
      */
     protected $_isPartialRendering = false;
+
+    /**
+     * Use one error message for array elements with concatenated values
+     *
+     * @var bool
+     */
+    protected $_concatJustValuesInErrorMessage = false;
 
     /**
      * Constructor
@@ -912,6 +919,28 @@ class Zend_Form_Element implements Zend_Validate_Interface
         }
 
         return $attribs;
+    }
+
+    /**
+     * Use one error message for array elements with concatenated values
+     *
+     * @param boolean $concatJustValuesInErrorMessage
+     * @return Zend_Form_Element
+     */
+    public function setConcatJustValuesInErrorMessage($concatJustValuesInErrorMessage)
+    {
+        $this->_concatJustValuesInErrorMessage = $concatJustValuesInErrorMessage;
+        return $this;
+    }
+
+    /**
+     * Use one error message for array elements with concatenated values
+     *
+     * @return boolean
+     */
+    public function getConcatJustValuesInErrorMessage()
+    {
+        return $this->_concatJustValuesInErrorMessage;
     }
 
     /**
@@ -2242,14 +2271,19 @@ class Zend_Form_Element implements Zend_Validate_Interface
             if (null !== $translator) {
                 $message = $translator->translate($message);
             }
-            if (($this->isArray() || is_array($value))
-                && !empty($value)
-            ) {
+            if ($this->isArray() || is_array($value)) {
                 $aggregateMessages = array();
                 foreach ($value as $val) {
                     $aggregateMessages[] = str_replace('%value%', $val, $message);
                 }
-                $messages[$key] = implode($this->getErrorMessageSeparator(), $aggregateMessages);
+                if (count($aggregateMessages)) {
+                    if ($this->_concatJustValuesInErrorMessage) {
+                        $values = implode($this->getErrorMessageSeparator(), $value);
+                        $messages[$key] = str_replace('%value%', $values, $message);
+                    } else {
+                        $messages[$key] = implode($this->getErrorMessageSeparator(), $aggregateMessages);
+                    }
+                }
             } else {
                 $messages[$key] = str_replace('%value%', $value, $message);
             }
